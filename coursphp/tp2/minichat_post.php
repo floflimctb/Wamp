@@ -14,7 +14,7 @@ $req->execute(array(
 	'pseudo' => $_POST['pseudo'],
 	'message' => $_POST['message']));
 
-$reponse = $bdd->query('SELECT * FROM minichat');
+$reponse = $bdd->query('SELECT pseudo, message FROM minichat ORDER BY ID DESC LIMIT 0, 10');
 
 while ($donnees = $reponse->fetch()) {
 	?>
@@ -24,6 +24,8 @@ while ($donnees = $reponse->fetch()) {
 	   	</p>
 	<?php
 }
+
+$reponse->closeCursor();
 
 header('Location: minichat.php');
 
